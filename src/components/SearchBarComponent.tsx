@@ -1,11 +1,29 @@
 
+import { useState } from 'react'
+import { GithubUser } from '../githubUserInterface'
+
 import searchbar from '../assets/icon-search.svg'
 
+import axios from 'axios'
+
 interface SearchBar{
-  darkMode: boolean
+  darkMode: boolean,
+  setGithubUser: (value: GithubUser) => void
 }
 
-export const SearchBarComponent = ({darkMode}:SearchBar) => {
+export const SearchBarComponent = ({darkMode, setGithubUser}:SearchBar) => {
+
+  const [userForSearch, setUserForSearch] = useState<string>('')
+  
+  const handleChange = (value: string) =>{
+    setUserForSearch(value)
+  }
+  
+  const searchUser = async () =>{
+    const  response = await axios.get(`https://api.github.com/users/${userForSearch}`)
+    setGithubUser(response.data)
+  }
+
   return (
     <>
     {darkMode ? 
@@ -13,10 +31,13 @@ export const SearchBarComponent = ({darkMode}:SearchBar) => {
         <img className=' w-[20px] h-[20px]' src={`${searchbar}`} alt="" />
         <textarea className=' w-[186px] h-[26px] resize-none placeholder-center bg-[#1E2A47] placeholder-[#ffffff]' 
         placeholder='Search GitHub username...'
+        onChange={(e)=>handleChange(e.target.value)}
         ></textarea>
         <button className=' w-[84px] h-[46px] rounded-md bg-[#0079FF]
         text-sm font-bold text-[#ffffff] 
-        '>Search</button>
+        '
+        onClick={searchUser}
+        >Search</button>
       </div>
     
     : 
@@ -24,10 +45,13 @@ export const SearchBarComponent = ({darkMode}:SearchBar) => {
         <img className=' w-[20px] h-[20px]' src={`${searchbar}`} alt="" />
         <textarea className=' w-[186px] h-[26px] resize-none placeholder-center' 
         placeholder='Search GitHub username...'
+        onChange={(e)=>handleChange(e.target.value)}
         ></textarea>
         <button className=' w-[84px] h-[46px] rounded-md bg-[#0079FF]
          text-sm font-bold text-[#ffffff] 
-        '>Search</button>
+        '
+        onClick={searchUser}
+        >Search</button>
     </div>
     }
     </>

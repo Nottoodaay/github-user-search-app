@@ -4,8 +4,15 @@ import { DisplayUserComponent } from "./components/DisplayUserComponent"
 import { SearchBarComponent } from "./components/SearchBarComponent" 
 import { ToggleDarkMode } from "./atoms/ToggleDarkMode"
 
+import { GithubUser } from "./githubUserInterface"
+import { GithubUserComponent } from "./components/GithubUserComponent"
+
 function App() {
   const [darkMode, setDarkMode] = useState<boolean>(false)
+
+  const [githubUser, setGithubUser] = useState<GithubUser>()
+
+  console.log(githubUser)
 
   return (
     <>
@@ -16,8 +23,12 @@ function App() {
 
         <ToggleDarkMode darkMode={darkMode} setDarkMode={setDarkMode}/>
       </div>
-      <SearchBarComponent darkMode={darkMode}/>
-      <DisplayUserComponent darkMode={darkMode}/>
+
+      <SearchBarComponent darkMode={darkMode} setGithubUser={setGithubUser}/>
+      {githubUser ? 
+        <GithubUserComponent githubUser={githubUser} darkMode={darkMode}/> 
+        : 
+        <DisplayUserComponent darkMode={darkMode}/>}
     </div>
   
     :
@@ -27,8 +38,14 @@ function App() {
 
         <ToggleDarkMode darkMode={darkMode} setDarkMode={setDarkMode}/>
       </div>
-      <SearchBarComponent darkMode={darkMode}/>
-      <DisplayUserComponent darkMode={darkMode}/>
+
+      <SearchBarComponent darkMode={darkMode} setGithubUser={setGithubUser}/>
+      {githubUser ? 
+        <GithubUserComponent githubUser={githubUser} darkMode={darkMode}/> 
+        : 
+        <DisplayUserComponent darkMode={darkMode}/>}
+      
+      
     </div>
     }
     

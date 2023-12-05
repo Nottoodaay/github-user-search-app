@@ -67,7 +67,7 @@ export const DisplayUserComponent = ({darkMode}:DisplayComponent) => {
                 <div className=' font-normal text-[13px] text-[#FFFFFF]'>@github</div>
             </div>
         </div>
-</div>
+    </div>
     
     
     :
