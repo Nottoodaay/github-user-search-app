@@ -27,9 +27,9 @@ export const SearchBarComponent = ({darkMode, setGithubUser}:SearchBar) => {
   return (
     <>
     {darkMode ? 
-      <div className=" w-[328px] h-[60px] flex justify-between p-2 items-baseline bg-[#1E2A47] rounded-lg">
+      <div className=" w-[328px] lg:w-[574px] h-[60px] flex justify-between p-2 items-baseline bg-[#1E2A47] rounded-lg">
         <img className=' w-[20px] h-[20px]' src={`${searchbar}`} alt="" />
-        <textarea className=' w-[186px] h-[26px] resize-none placeholder-center bg-[#1E2A47] placeholder-[#ffffff]' 
+        <textarea className=' w-[186px] lg:w-[254px] h-[26px] resize-none placeholder-center bg-[#1E2A47] placeholder-[#ffffff]' 
         placeholder='Search GitHub username...'
         onChange={(e)=>handleChange(e.target.value)}
         ></textarea>
@@ -41,9 +41,9 @@ export const SearchBarComponent = ({darkMode, setGithubUser}:SearchBar) => {
       </div>
     
     : 
-    <div className=" w-[328px] h-[60px] flex justify-between p-2 items-baseline bg-[#ffffff] rounded-lg">
+    <div className=" w-[328px] lg:w-[574px] h-[60px] flex justify-between p-2 items-baseline bg-[#ffffff] rounded-lg">
         <img className=' w-[20px] h-[20px]' src={`${searchbar}`} alt="" />
-        <textarea className=' w-[186px] h-[26px] resize-none placeholder-center' 
+        <textarea className=' w-[186px] lg:w-[254px] h-[26px] resize-none placeholder-center' 
         placeholder='Search GitHub username...'
         onChange={(e)=>handleChange(e.target.value)}
         ></textarea>

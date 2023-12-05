@@ -18,7 +18,8 @@ function App() {
     <>
     {darkMode ? 
       <div className=" w-[100vw] h-[100vh] items-center flex flex-col gap-4 justify-center bg-[#141D2F]">
-      <div className=" flex items-baseline gap-[110px]">
+      
+      <div className=" flex items-baseline gap-[110px] lg:gap-[367px]">
         <h1 className=" text-2xl font-bold text-[#FFFFFF]">Devfinder</h1>
 
         <ToggleDarkMode darkMode={darkMode} setDarkMode={setDarkMode}/>
@@ -33,7 +34,8 @@ function App() {
   
     :
     <div className=" w-[100vw] h-[100vh] items-center flex flex-col gap-4 justify-center bg-[#F6F8FF]">
-      <div className=" flex items-baseline gap-[110px]">
+     
+     <div className=" flex items-baseline gap-[110px] lg:gap-[367px]">
         <h1 className=" text-2xl font-bold text-[#222731]">Devfinder</h1>
 
         <ToggleDarkMode darkMode={darkMode} setDarkMode={setDarkMode}/>
