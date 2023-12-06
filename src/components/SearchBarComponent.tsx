@@ -35,10 +35,13 @@ export const SearchBarComponent = ({darkMode, setGithubUser}:SearchBar) => {
     {darkMode ? 
       <div className=" w-[328px] lg:w-[574px] h-[60px] flex justify-between p-2 items-baseline bg-[#1E2A47] rounded-lg">
         <img className=' w-[20px] h-[20px]' src={`${searchbar}`} alt="" />
-        <textarea className=' w-[186px] lg:w-[254px] h-[26px] resize-none placeholder-center bg-[#1E2A47] placeholder-[#ffffff]' 
+        <textarea className=' w-[186px] lg:w-[254px] h-[26px] 
+        resize-none placeholder-center bg-[#1E2A47] placeholder-[#ffffff] text-[#ffffff]' 
         placeholder='Search GitHub username...'
         onChange={(e)=>handleChange(e.target.value)}
         ></textarea>
+        {error ? <div className=' hidden lg:block text-[#F74646] font-bold text-[15px]'>No Result</div> 
+        : <div className=' hidden'></div>}
         <button className=' w-[84px] h-[46px] rounded-md bg-[#0079FF]
         text-sm font-bold text-[#ffffff] 
         '
