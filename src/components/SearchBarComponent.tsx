@@ -4,7 +4,7 @@ import { GithubUser } from '../githubUserInterface'
 
 import searchbar from '../assets/icon-search.svg'
 
-import axios from 'axios'
+import axios, {AxiosError} from 'axios'
 
 interface SearchBar{
   darkMode: boolean,
@@ -14,14 +14,20 @@ interface SearchBar{
 export const SearchBarComponent = ({darkMode, setGithubUser}:SearchBar) => {
 
   const [userForSearch, setUserForSearch] = useState<string>('')
-  
+  const [error, setError] = useState<AxiosError | null>(null)
+     
   const handleChange = (value: string) =>{
     setUserForSearch(value)
   }
   
   const searchUser = async () =>{
-    const  response = await axios.get(`https://api.github.com/users/${userForSearch}`)
-    setGithubUser(response.data)
+    try {
+      const  response = await axios.get(`https://api.github.com/users/${userForSearch}`) 
+      setError(null)
+      setGithubUser(response.data)
+    } catch (error: any) {
+      setError(error)
+    }
   }
 
   return (
@@ -47,6 +53,8 @@ export const SearchBarComponent = ({darkMode, setGithubUser}:SearchBar) => {
         placeholder='Search GitHub username...'
         onChange={(e)=>handleChange(e.target.value)}
         ></textarea>
+        {error ? <div className=' hidden lg:block text-[#F74646] font-bold text-[15px]'>No Result</div> 
+        : <div className=' hidden'></div>}
         <button className=' w-[84px] h-[46px] rounded-md bg-[#0079FF]
          text-sm font-bold text-[#ffffff] 
         '
